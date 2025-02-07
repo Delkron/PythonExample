@@ -113,9 +113,9 @@ def option_four():
         exit_answer = int(input("> "))
         if exit_answer == 1:
             patients_file = open("patients.json", "w")
-            json.dump(patients, patients_file)#"Dumps" the altered list within the initial value into the re-opened and writtable json, closing it afterwards and "saving" the changes
+            json.dump(patients, patients_file)#"Dumps" the altered list within the initial value into the re-opened and writable json, closing it afterwards and "saving" the changes
             patients_file.close()
-            time.sleep(2) #Delays the program by 2 seconds
+            time.sleep(2)
             print("Patients File Saved!")
             print()
             print("Have a nice day!")
