@@ -4,7 +4,7 @@ __author__ = 'David Fensling'
 __version__ = '1.5'
 __date__ = '26/06/2023'
 
-
+global exiting
 import json #This allows the program to understand which format it is using
 
 import time #Lets the program use the terminal's set Time for any time-based functions (I used mine to let it pause and say a farewell at the end)
@@ -99,7 +99,8 @@ def option_three(): #This option allows a user to delete a patient from the list
         print("Please select a valid answer")
 
 #This is the Exit option, and put last as it is the final of the list. It confirms if the user wishes to quit, and saves the altered list to the json after opening it with "w" or Write
-def option_four(): 
+def option_four():
+    global exiting
     print("Are you sure, you want to quit?")
     print('''
 ========
@@ -116,17 +117,18 @@ def option_four():
             patients_file.close()
             time.sleep(2) #Delays the program by 2 seconds
             print("Patients File Saved!")
+            print()
+            print("Have a nice day!")
+            exiting = True
         elif exit_answer == 2:
             pass
         else:
             print("Please select a valid option")
-        print()
-        print("Have a nice day!")
-        time.sleep(2)
+        
 
 while 1: #This is the main part of the Program where the menu's functionality is utilized. The While loop continues perpetually until you exit the program. The defined Functions are activated down here
     entry_menu()
-
+    exiting = False
     menu_selection = input()
 
     if menu_selection == "1":
@@ -137,6 +139,7 @@ while 1: #This is the main part of the Program where the menu's functionality is
         option_three()
     elif menu_selection == "4": 
         option_four()
-        break #Turns off the Program
+        if exiting:
+            break #Turns off the Program
     else:
         print("Please select a valid option")
